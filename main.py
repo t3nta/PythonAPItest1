@@ -7,7 +7,7 @@ app = Flask(__name__)
 #def home():
 #    return "Home"
 
-#GET route
+#GET route, skriv det her i http baren for at access det: http://127.0.0.1:5000/get-user/123?extra=%22hello%22
 @app.route("/get-user/<user_id>")
 def get_user(user_id):
     user_data = {
@@ -21,6 +21,12 @@ def get_user(user_id):
         user_data["extra"] = extra
 
         return jsonify(user_data), 200
+
+@app.route("/create-user", methods=["POST"])
+def create_user():
+    data = request.get_json()
+
+    return jsonify(data), 201
 
 #Laver en if statement som kører appen efter validering
 if __name__ == "__main__":
